@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -30,13 +29,17 @@
 			reviews.push( item.value );
 		});
 
-		const param = {};
-		param.reviews = reviews;
+		const param = new URLSearchParams();
+		reviews.forEach(function(item) {
+			param.append("reviews[]", item);
+		});		
 
-		axios.post("${contextPath}/strings/result", param, {
+		fetch("${contextPath}/strings/result", {
+			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
-			}
+			},
+			body: param
 		})
 		.then((res) => {
 			console.log(res);

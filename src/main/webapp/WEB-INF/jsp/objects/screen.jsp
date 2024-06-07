@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -31,10 +30,12 @@
 
 		const param = JSON.stringify(arr);
 
-		axios.post("${contextPath}/objects/result", param, {
+		fetch("${contextPath}/objects/result", {
+			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
-			}
+			},
+			body: param
 		})
 		.then((res) => {
 			console.log(res);

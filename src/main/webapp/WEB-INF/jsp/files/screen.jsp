@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -32,10 +31,11 @@
 	document.querySelector('#btn').addEventListener('click', function() {
 		const formData = setFormData();
 
-		axios.post("${contextPath}/files/result", formData, {
+		fetch("${contextPath}/files/result", {
+			method: "POST",
 			headers: {
-				"Content-Type": "multipart/form-data"
-			}
+			},
+			body: formData
 		})
 		.then((res) => {
 			console.log(res);

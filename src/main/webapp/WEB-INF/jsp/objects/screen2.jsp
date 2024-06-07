@@ -6,7 +6,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
 
@@ -32,10 +31,12 @@
 		const param = {};
 		param.jsonData = JSON.stringify(arr);
 
-		axios.post("${contextPath}/objects/result2", param, {
+		fetch("${contextPath}/objects/result2", {
+			method: "POST",
 			headers: {
 				"Content-Type": "application/x-www-form-urlencoded"
-			}
+			},
+			body: new URLSearchParams(param)
 		})
 		.then((res) => {
 			console.log(res);
