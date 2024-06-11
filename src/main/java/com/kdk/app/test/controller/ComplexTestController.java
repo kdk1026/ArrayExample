@@ -42,7 +42,8 @@ public class ComplexTestController {
 	@ResponseBody
 	@PostMapping("/result")
 	public void result(ComplexVo vo) {
-		List<Map<String, Object>> list = JacksonUtil.FromJson.converterJsonStrToList(vo.getListJson());
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> list = (List<Map<String, Object>>) JacksonUtil.FromJson.converterJsonStrToList(vo.getListJson());
 
 		log.info("vo : {}", vo);
 
