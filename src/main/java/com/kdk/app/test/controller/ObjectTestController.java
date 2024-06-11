@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kdk.app.common.util.json.JacksonUtil;
 import com.kdk.app.test.vo.PostVo;
 
 import lombok.extern.slf4j.Slf4j;
@@ -60,8 +60,11 @@ public class ObjectTestController {
 	@ResponseBody
 	@PostMapping("/result2")
 	public void result2(String jsonData) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		List<PostVo> list = Arrays.asList(mapper.readValue(jsonData, PostVo[].class));
+//		ObjectMapper mapper = new ObjectMapper();
+//		List<PostVo> list = Arrays.asList(mapper.readValue(jsonData, PostVo[].class));
+
+		PostVo[] posts = JacksonUtil.FromJson.converterJsonStrToClass(jsonData, PostVo[].class);
+		List<PostVo> list = Arrays.asList(posts);
 
 		for (PostVo vo : list) {
 			log.info("vo : {}", vo);

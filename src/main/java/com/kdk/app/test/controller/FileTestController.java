@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kdk.app.common.util.json.JacksonUtil;
 import com.kdk.app.test.vo.FileParamVo;
 import com.kdk.app.test.vo.FileVo;
 
@@ -43,8 +43,11 @@ public class FileTestController {
 	@ResponseBody
 	@PostMapping("/result")
 	public void result(FileParamVo vo) throws Exception {
-		ObjectMapper mapper = new ObjectMapper();
-		List<FileVo> list = Arrays.asList(mapper.readValue(vo.getJsonData(), FileVo[].class));
+//		ObjectMapper mapper = new ObjectMapper();
+//		List<FileVo> list = Arrays.asList(mapper.readValue(vo.getJsonData(), FileVo[].class));
+
+		FileVo[] files = JacksonUtil.FromJson.converterJsonStrToClass(vo.getJsonData(), FileVo[].class);
+		List<FileVo> list = Arrays.asList(files);
 
 		// 머지
 		int nIdx = -1;
