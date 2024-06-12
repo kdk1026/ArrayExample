@@ -32,7 +32,7 @@
 		const param = new URLSearchParams();
 		reviews.forEach(function(item) {
 			param.append("reviews[]", item);
-		});		
+		});
 
 		fetch("${contextPath}/strings/result", {
 			method: "POST",
@@ -42,7 +42,7 @@
 			body: param
 		})
 		.then((res) => {
-			res.json();
+			return res.json();
 		})
 		.then((data) => {
 			console.log(data);

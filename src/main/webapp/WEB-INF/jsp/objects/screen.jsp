@@ -38,7 +38,7 @@
 			body: param
 		})
 		.then((res) => {
-			res.json();
+			return res.json();
 		})
 		.then((data) => {
 			console.log(data);
